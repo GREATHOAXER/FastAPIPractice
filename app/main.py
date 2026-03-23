@@ -1,6 +1,10 @@
 from fastapi import FastAPI
-app = FastAPI()
+from api.v1.api import api_router
 
-@app.get("/")
-def root():
-    return {'Hello' : 'World'}
+app = FastAPI(
+    title='KFTC Onboarding',
+    version="1.0.0",
+    docs_url="/docs"
+)
+
+app.include_router(api_router, prefix="/api/v1")
